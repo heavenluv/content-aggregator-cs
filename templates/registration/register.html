@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+<main class="container">
+    <div class="row align-items-center">
+        <div class="col">
+            <div class="card">
+                <h5 class="card-header">Register</h5>
+                <div class="card-body">
+                    <form method="post" class="card-text">
+                        {% csrf_token %}
+                        {% crispy form %}                       
+                        <input type="submit" value="Register" class="btn btn-success my-2">
+                    </form>
+
+                    <br>
+                    <a href="{% url 'homepage' %}" class="btn btn-primary">Back to Home Page</a>
+                    <br>
+                    <p><a href="{% url 'login' %}">Back to Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+{% endblock %}

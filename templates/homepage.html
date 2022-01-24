@@ -1,0 +1,58 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<form class="form-group px-5" action="{% url 'search_episodes' %}" method="get">
+    <div class="input-group">
+        <input name="p" type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+            aria-describedby="search-addon" />
+        <button type="button" class="btn btn-outline-primary">Search</button>
+    </div>
+
+</form>
+    <main class="container flex-grow-1">
+        <h5 class="text-center">Check your subscribed feed <a
+                href="{% url 'subhomepage' %}">here</a>!</h5>
+        <div class="row">
+            <div class="col">
+                {% for episode in episodes %}
+                <section class="card mb-3">
+                    <div class="row no-gutters">
+                        <div class="col-md-2 my-auto">
+                            <img src="{{ episode.image }}" class="img-fluid ml-3 my-3"
+                                alt="{{ episode.podcast_name }}" />
+                        </div>
+                        <div class="col-md-10">
+                            <div class="card-body ml-3">
+                                <h3 class="card-title">{{ episode.title }}</h3>
+                                <p class="card-text">{{ episode.description }}</p>
+                                <a href="{{ episode.link }}">
+                                    <p class="card-text">🎧 Watch / Listen to this episode</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+    <div class="pagination d-flex justify-content-center">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; First </a>
+            <a href="?page={{ page_obj.previous_page_number }}">Previous </a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+    
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+{% endblock %}
