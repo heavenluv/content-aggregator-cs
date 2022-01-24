@@ -7,10 +7,17 @@ from django.contrib.auth.forms import UserCreationForm
 
 from podcasts.models import Category
 
-queryset_genre = Category.objects.all().distinct()
-# print(queryset_genre)
-GENRES_CHOICES = [(obj.id, obj.title) for obj in queryset_genre]
 
+# queryset_genre = Category.objects.all().distinct()
+# print(queryset_genre)
+# GENRES_CHOICES = [(obj.id, obj.title) for obj in queryset_genre]
+GENRES_CHOICES = [
+    (1,'Python'),
+    (3,'Backend'),
+    (4,'Frontend'),
+    (5,'Data Science'),
+    (6,'Machine Learning'),
+]
 class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         fields = UserCreationForm.Meta.fields + ("email",)

@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'podcasts.apps.PodcastsConfig',
+    'podcasts',
     'django_apscheduler',
     'crispy_forms',
 ]
@@ -84,6 +84,16 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'dfptot275he1jh',
+#         'USER': 'mixrjuysrwywno',
+#         'PASSWORD': '1bd51d53d6587705ec322ba2317169f05d7b9b39c44985246d522afff6847633',
+#         'HOST': 'ec2-34-194-171-47.compute-1.amazonaws.com',
+#         'PORT':  5432
+#     }
+# }
 
 
 # Password validation
