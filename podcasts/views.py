@@ -21,7 +21,7 @@ def add_subscription_categories(request):
     current_user = request.user
     if current_user.genres.exists():
         return redirect(reverse("subhomepage"))
-    print(current_user)
+    # print(current_user)
     if request.method == "POST":
         form  = GenreSelectionForm(request.POST)
         if form.is_valid():
@@ -111,7 +111,7 @@ class RegisteredHomePageView(LoginRequiredMixin, ListView):
             file_episodes = paginator.page(1)
         except EmptyPage:
             file_episodes = paginator.page(paginator.num_pages)
-        print(paginator.num_pages)
+        # print(paginator.num_pages)
         liked = [i for i in Episode.objects.all() if Favorite.objects.filter(
             user=self.request.user, like=i)]
         context['liked_episode'] = liked
@@ -135,7 +135,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            print(user.genres)
+            # print(user.genres)
             if user.last_login == user.date_joined or user.genres is None:
                 return redirect(reverse("genre_selection"))
             return redirect(reverse("homepage"))
