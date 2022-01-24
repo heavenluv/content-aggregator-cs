@@ -150,3 +150,5 @@ AUTH_USER_MODEL = 'podcasts.User'
 
 LOGIN_REDIRECT_URL = '/genre_selection'
 LOGOUT_REDIRECT_URL = "/"
+import django_heroku
+django_heroku.settings(locals())
