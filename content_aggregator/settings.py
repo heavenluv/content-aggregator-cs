@@ -160,6 +160,7 @@ AUTH_USER_MODEL = 'podcasts.User'
 
 LOGIN_REDIRECT_URL = '/genre_selection'
 LOGOUT_REDIRECT_URL = "/"
+CSRF_TRUSTED_ORIGINS = ["https://content-aggregator-cs.herokuapp.com/"]
+
 import django_heroku
 django_heroku.settings(locals())
-CSRF_TRUSTED_ORIGINS = ["https://content-aggregator-cs.herokuapp.com/"]
