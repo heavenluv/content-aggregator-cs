@@ -5,8 +5,7 @@ from django.contrib.auth.models import AbstractUser
 class Category(models.Model):
     title = models.CharField(max_length=255, verbose_name="Genre Name")
     created_at = models.DateTimeField(
-        auto_now_add=True, verbose_name="Created at")
-    # followed_by = models.ForeignKey("User", blank=True, on_delete=models.CASCADE)
+        auto_now_add=True)
 
     class Meta:
         verbose_name = "Category"
@@ -33,7 +32,7 @@ class Episode(models.Model):
         verbose_name_plural = "Episodes"
         ordering = ['-published_date']
 
-    def __str__(self) -> str:
+    def __str__(self):
         return f"{self.podcast_name}: {self.title}"
 
 
@@ -44,7 +43,7 @@ class User(AbstractUser):
 
 
 class Favorite(models.Model):
-	user = models.ForeignKey(User, related_name='likes', on_delete=models.CASCADE)
-	like = models.ForeignKey(Episode, related_name='likes', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='likes', on_delete=models.CASCADE)
+    like = models.ForeignKey(Episode, related_name='likes', on_delete=models.CASCADE)
 
     
