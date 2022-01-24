@@ -1,1 +1,2 @@
-web: python manage.py runserver 0.0.0.0:$PORT python manage.py startjobs.py
+web: python manage.py runserver 0.0.0.0:$PORT 
+clock: python manage.py startjobs.py
