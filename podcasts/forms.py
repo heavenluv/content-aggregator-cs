@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from podcasts.models import Category
 
 queryset_genre = Category.objects.all().distinct()
-print(queryset_genre)
+# print(queryset_genre)
 GENRES_CHOICES = [(obj.id, obj.title) for obj in queryset_genre]
 
 class CustomUserCreationForm(UserCreationForm):
