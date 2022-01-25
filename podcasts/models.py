@@ -3,6 +3,18 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
+class Category(models.Model):
+    title = models.CharField(max_length=200, blank=True)
+    created_at = models.DateTimeField(
+        auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
+        ordering = ['title']
+
+    def __str__(self):
+        return self.title
 
 class Episode(models.Model):
     title = models.CharField(max_length=200)
@@ -24,29 +36,17 @@ class Episode(models.Model):
         return f"{self.podcast_name}: {self.title}"
 
 
-class Category(models.Model):
-    title = models.CharField(max_length=200,blank=True)
-    created_at = models.DateTimeField(
-        auto_now_add=True)
 
-    class Meta:
-        verbose_name = "Category"
-        verbose_name_plural = "Categories"
-        ordering = ['title']
-
-    def __str__(self):
-        return self.title
 
 
 class User(AbstractUser):
     genres = models.ManyToManyField(Category, blank=True)
-    # favorites = models.ManyToManyField(
-    #     Episode, blank=True)
+    favorites = models.ManyToManyField(
+        Episode, blank=True)
 
 
 class Favorite(models.Model):
     user = models.ForeignKey(User, related_name='likes', on_delete=models.CASCADE)
     like = models.ForeignKey(Episode, related_name='likes', on_delete=models.CASCADE)
-    created_at = models.DateTimeField(
-        auto_now_add=True)
+
     

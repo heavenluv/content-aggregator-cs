@@ -43,7 +43,7 @@ def add_subscription_categories(request):
 def edit_subscription_categories(request):
     current_user = request.user
     if not current_user.genres.exists():
-        return redirect(reverse("genre_selection"))
+        return HttpResponseRedirect(reverse_lazy("genre_selection"))
     if request.method == "POST":
         form = GenreSelectionForm(request.POST)
         if form.is_valid():
@@ -135,10 +135,9 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            # print(user.genres)
-            if user.last_login == user.date_joined or user.genres is None:
-                return redirect(reverse("genre_selection"))
-            return redirect(reverse("homepage"))
+            if user.last_login == user.date_joined or user.genres == "podcasts.Category.None":
+                return HttpResponseRedirect(reverse("genre_selection"))
+            return HttpResponseRedirect(reverse("subhomepage"))
 
 @login_required
 def search_episodes(request):

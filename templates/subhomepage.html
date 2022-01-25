@@ -16,6 +16,9 @@
 <main class="container flex-grow-1">
     <div class="row">
         <div class="col">
+            <!-- {% if not episodes %}
+                <meta http-equiv="REFRESH" content="0;url={% url 'genre_selection' %}">
+            {% endif %} -->
             {% for episode in episodes %}
             <section class="card mb-3">
                 <div class="row no-gutters">
