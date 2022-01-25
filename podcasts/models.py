@@ -6,7 +6,7 @@ from django.contrib.auth.models import AbstractUser
 class Category(models.Model):
     title = models.CharField(max_length=200, blank=True)
     created_at = models.DateTimeField(
-        auto_now_add=True)
+        auto_now_add=True, null=True)
 
     class Meta:
         verbose_name = "Category"
