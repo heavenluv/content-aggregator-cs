@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from podcasts.models import Category, User
 
 
-queryset_genre = Category.objects.all().distinct()
+queryset_genre = Category.objects.all()
 GENRES_CHOICES = [(obj.id, obj.title) for obj in queryset_genre]
 # GENRES_CHOICES = [
 #     (1,'Python'),
@@ -23,4 +23,5 @@ class CustomUserCreationForm(UserCreationForm):
         fields = UserCreationForm.Meta.fields + ("email",)
 
 class GenreSelectionForm(forms.Form):
-    available_options = forms.MultipleChoiceField(required=True, widget=forms.CheckboxSelectMultiple, choices=GENRES_CHOICES)
+    available_options = forms.MultipleChoiceField(
+        required=True, widget=forms.CheckboxSelectMultiple, choices=GENRES_CHOICES)

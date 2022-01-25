@@ -124,11 +124,11 @@ class Command(BaseCommand):
             'default': DjangoJobStore()
         }
         executors = {
-            'default': ThreadPoolExecutor(10),
+            'default': ThreadPoolExecutor(5),
         }
         job_defaults = {
             # 'coalesce': False,
-            'max_instances': 8
+            'max_instances': 4
         }
         scheduler = BlockingScheduler(
             executors=executors, job_defaults=job_defaults, timezone=settings.TIME_ZONE)
