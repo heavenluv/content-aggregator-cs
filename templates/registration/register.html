@@ -9,9 +9,12 @@
             <div class="card">
                 <h5 class="card-header">Register</h5>
                 <div class="card-body">
+                    {% if error %}
+                    <p>Warning: {{ error }}</p>
+                    {% endif %}
                     <form method="post" class="card-text" action=".">
-                        <p>{{ form.name.errors }}</p>
-                        <p>{{ form.non_field_errors }}</p>
+                        <!-- <p>{{ form.name.errors }}</p>
+                        <p>{{ form.non_field_errors }}</p> -->
                         {% csrf_token %}
                         {{ form.as_p }}                       
  <button class="btn btn-success" type="submit">Register </button>                    

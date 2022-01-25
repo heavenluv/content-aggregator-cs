@@ -142,6 +142,11 @@ def register(request):
                 return HttpResponseRedirect(reverse("genre_selection"))
             print("sub")
             return HttpResponseRedirect(reverse("subhomepage"))
+        else:
+            print("should run here")
+            return render(request, "registration/register.html",
+                {"form": CustomUserCreationForm,
+                "error":form.errors})
         # else:
         #     # Do something in case if form is not valid
         #     raise Http404
