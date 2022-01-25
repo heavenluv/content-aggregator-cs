@@ -15,6 +15,7 @@ from django.contrib.auth.decorators import login_required
 from podcasts.forms import GenreSelectionForm
 from django.http import HttpResponseRedirect, HttpResponse
 import json
+from django.http import Http404
 
 @login_required
 def add_subscription_categories(request):
@@ -132,12 +133,18 @@ def register(request):
         )
     elif request.method == "POST":
         form = CustomUserCreationForm(request.POST)
+        print(form.errors)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            if user.last_login == user.date_joined or user.genres == "podcasts.Category.None":
+            if user.last_login == user.date_joined or not user.genres.exists():
+                print("empty")
                 return HttpResponseRedirect(reverse("genre_selection"))
+            print("sub")
             return HttpResponseRedirect(reverse("subhomepage"))
+        # else:
+        #     # Do something in case if form is not valid
+        #     raise Http404
 
 @login_required
 def search_episodes(request):
