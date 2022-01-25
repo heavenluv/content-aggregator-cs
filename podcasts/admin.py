@@ -11,7 +11,7 @@ class EpisodeAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ("title", "created_at",)
+    list_display = ("title",)
 
 
 
